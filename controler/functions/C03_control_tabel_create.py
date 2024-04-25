@@ -1,7 +1,22 @@
 import pandas as pd 
 import logging
+import json
+import os
+
+path_credentiales = 'config/conect_db_postgres.json'
 
 def create_table_control():
+    with open(path_credentiales) as f:
+            config = json.load(f)
+
+            # Definindo as variáveis de ambiente
+            os.environ['NOME_PASTA_CONTROL_TABLE'] = config['NOME_PASTA_CONTROL_TABLE']
+            os.environ['NOME_PASTA_SCHEMA_CONTROLER'] = config['NOME_PASTA_SCHEMA_CONTROLER']
+            
+            #Pegando as credenciais via variável de ambiente
+            NOME_PASTA_CONTROL_TABLE = os.getenv('NOME_PASTA_CONTROL_TABLE')
+            NOME_PASTA_SCHEMA_CONTROLER = os.getenv('NOME_PASTA_SCHEMA_CONTROLER')
+
     # Dicionário de mapeamento dos tipos SQL para os tipos Python correspondentes
     sql_to_python_types = {
         'CHAR': 'str',
@@ -43,7 +58,7 @@ def create_table_control():
     }
 
     # Carrega o DataFrame
-    control = pd.read_csv('/home/michel/Documentos/Projetos/etl_with_apache_beam_and_table_control/controler/data/schema_controler/schema_controler.csv', index_col=0)
+    control = pd.read_csv(f'{NOME_PASTA_SCHEMA_CONTROLER}/schema_controler.csv', index_col=0)
 
     # Convertendo todas as chaves do dicionário para minúsculas
     sql_to_python_types = {key.lower(): value for key, value in sql_to_python_types.items()}
@@ -52,7 +67,7 @@ def create_table_control():
     control['types_python'] = control['data_type'].str.lower().map(sql_to_python_types)
 
     # Exibe o DataFrame atualizado
-    control.to_csv('/home/michel/Documentos/Projetos/etl_with_apache_beam_and_table_control/controler/data/control_table/control_table.csv')
+    control.to_csv(f'{NOME_PASTA_CONTROL_TABLE}/control_table.csv')
 
     logging.info(f'Tabela controler criada...\n')
 

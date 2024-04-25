@@ -4,6 +4,9 @@
     "DB_HOST": "159.223.187.110",
     "DB_PORT": "5432",
     "DB_DATABASE": "novadrive",
-    "DB_SERVICE": ""
+
+    "NOME_PASTA_CONTROL_TABLE": "controler/data/postgres/control_table",
+    "NOME_PASTA_SCHEMA_CONTROLER": "controler/data/postgres/schema_controler",
+    "NOME_PASTA_SCHEMA_ORIGIN": "controler/data/postgres/schemas_origin"
 }
 

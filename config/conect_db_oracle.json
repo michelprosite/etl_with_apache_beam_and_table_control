@@ -1,0 +1,12 @@
+{
+    "DB_USER": "etlreadonly",
+    "DB_PASSWORD": "novadrive376A@",
+    "DB_HOST": "159.223.187.110",
+    "DB_PORT": "5432",
+    "DB_DATABASE": "novadrive",
+
+    "NOME_PASTA_CONTROL_TABLE": "controler/data/oracle/control_table",
+    "NOME_PASTA_SCHEMA_CONTROLER": "controler/data/oracle/schema_controler",
+    "NOME_PASTA_SCHEMA_ORIGIN": "controler/data/oracle/schemas_origin"
+}
+

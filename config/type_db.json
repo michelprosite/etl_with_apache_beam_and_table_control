@@ -1,0 +1,4 @@
+{
+    "TYPE_DB_POSTGRES": "postgres",
+    "TYPE_DB_ORACLE": "oracle"
+}
