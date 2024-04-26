@@ -2,8 +2,20 @@ import pandas as pd
 import logging
 import json
 import os
+import sys
 
-path_credentiales = 'config/conect_db_postgres.json'
+path_txt_type_db = "/home/michel/Documentos/Projetos/etl_with_apache_beam_and_table_control/controler/functions/type_db.txt"
+
+with open(path_txt_type_db , 'r') as tdb:
+    type_db = tdb.read().strip()
+
+if type_db == "postgres":
+    path_credentiales = 'config/conect_db_postgres.json'
+elif type_db == "oracle":
+    path_credentiales = 'config/conect_db_oracle.json'
+else:
+    print(f"Não há como criar a controler no banco informado >> {type_db}")
+    sys.exit()
 
 def create_table_control():
     with open(path_credentiales) as f:
